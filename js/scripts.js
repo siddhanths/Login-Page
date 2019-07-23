@@ -75,7 +75,8 @@ var vm = new Vue({
 	},
 	methods: {
 		formSubmit: function(event){
-			event.preventDefault();
+			event.preventDefault(); // Preventing refresh when Submit Button is clicked
+			// Form Submit code can be added here
 		},
 		process: function(){
 			this.emailObj = emailValidator(this.email);
