@@ -22,7 +22,7 @@
 				</form>
 				<div class="errors" v-if="!noErrors">
 					<section v-cloak v-if="email" class="email-errors">
-						<span class="warning" :class="{valid: emailSuccess}">{{emailText}}</span>	
+						<span class="warning" :class="{valid: emailObj.emailSuccess}">{{emailObj.emailText}}</span>	
 					</section>
 					<section class="password-errors" v-if="password" v-cloak>
 						<span class="warning" :class="{valid: passwordObj.pwLengthSuccess}">At least 8 characters</span>

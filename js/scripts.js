@@ -1,6 +1,7 @@
-// Email Validation
+// Function to test Email Validation
 function emailValidator(emailAddress){
-	var emailObj = {emailSuccess: false, emailText: 'Not a Valid Email'}, emailFilter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	var emailObj = {emailSuccess: false, emailText: 'Not a Valid Email'}, 
+	emailFilter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; // regex to test email pattern
 	if (emailAddress) {
 		emailObj.emailSuccess = false;
 		if(emailFilter.test(emailAddress)){
@@ -12,7 +13,7 @@ function emailValidator(emailAddress){
 	return emailObj;
 }
 
-// Password Validation
+// Function to test Password Validation
 function passwordValidator(password){
 
 	var passwordObj = {
@@ -24,10 +25,10 @@ function passwordValidator(password){
 		pwDigSuccess: false
 	};
 
-	var lowerCaseFilter = /(?=.*[a-z])/;
-	var upperCaseFilter = /(?=.*[A-Z])/;
-	var specialCharFilter = /[!@#$%^&*()-+={}\|/?<>,.~`_]/;
-	var digitFilter = /(?=.*\d)/;
+	var lowerCaseFilter = /(?=.*[a-z])/; // regex to test for lower case letters
+	var upperCaseFilter = /(?=.*[A-Z])/; // regex to test for upper case letters
+	var specialCharFilter = /[!@#$%^&*()-+={}\|/?<>,.~`_]/; // // regex to test for special characters
+	var digitFilter = /(?=.*\d)/; // regex to test for numbers
 
 	if(password){
 		passwordObj.passwordSuccess = false;
@@ -58,9 +59,10 @@ var vm = new Vue({
 	data: {
 		email: '',
 		password: '',
-		emailText: 'Not a Valid Email',
-		emailSuccess: false,
-		noErrors: false,
+		emailObj: {
+			emailSuccess: false, 
+			emailText: 'Not a Valid Email'
+		},
 		passwordObj: {
 			passwordSuccess: false,
 			pwLengthSuccess: false, // Setting Password Length Success Criteria to False
@@ -68,18 +70,18 @@ var vm = new Vue({
 			pwUCSuccess: false,  // Setting Password Upper Case Success Criteria to False
 			pwSCSuccess: false,  // Setting Password Special Character Success Criteria to False
 			pwDigSuccess: false  // Setting Password Digits Success Criteria to False
-		}
+		},
+		noErrors: false
 	},
 	methods: {
 		formSubmit: function(event){
 			event.preventDefault();
 		},
 		process: function(){
-			this.emailSuccess = emailValidator(this.email).emailSuccess;
-			this.emailText = emailValidator(this.email).emailText;
+			this.emailObj = emailValidator(this.email);
 			this.passwordObj = passwordValidator(this.password);
 
-			if(this.email && this.password && this.emailSuccess && this.passwordObj.passwordSuccess){
+			if(this.email && this.password && this.emailObj.emailSuccess && this.passwordObj.passwordSuccess){
 				this.noErrors = true;
 			}else{
 				this.noErrors = false;
