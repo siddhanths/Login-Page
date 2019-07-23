@@ -1,6 +1,6 @@
 // Function to test Email Validation
 function emailValidator(emailAddress){
-	var emailObj = {emailSuccess: false, emailText: 'Not a Valid Email'}, 
+	var emailObj = {emailSuccess: false, emailText: 'Not a Valid Email Address'}, 
 	emailFilter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; // regex to test email pattern
 	if (emailAddress) {
 		emailObj.emailSuccess = false;
@@ -18,11 +18,11 @@ function passwordValidator(password){
 
 	var passwordObj = {
 		passwordSuccess: true,
-		pwLengthSuccess: false,
-		pwLCSuccess: false,
-		pwUCSuccess: false,
-		pwSCSuccess: false,
-		pwDigSuccess: false
+		pwLengthSuccess: false, // Setting Password Length Success Criteria to False
+		pwLCSuccess: false,  // Setting Password Lower Case Success Criteria to False
+		pwUCSuccess: false,  // Setting Password Upper Case Success Criteria to False
+		pwSCSuccess: false,  // Setting Password Special Character Success Criteria to False
+		pwDigSuccess: false  // Setting Password Digits Success Criteria to False
 	};
 
 	var lowerCaseFilter = /(?=.*[a-z])/; // regex to test for lower case letters
@@ -61,7 +61,7 @@ var vm = new Vue({
 		password: '',
 		emailObj: {
 			emailSuccess: false, 
-			emailText: 'Not a Valid Email'
+			emailText: 'Not a Valid Email Address'
 		},
 		passwordObj: {
 			passwordSuccess: false,
