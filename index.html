@@ -4,11 +4,12 @@
 		<title>Login Page</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/styles.css" />
 	</head>
 	<body>
 		<div id="app">
 			<div class="container">
-				<form class="mt-5">
+				<form class="form">
 					<div class="form-group">
 						<label for="email">Email</label>
 						<input type="email" v-model="email" @input="process" class="form-control form-control-lg" />
@@ -17,111 +18,23 @@
 						<label for="password">Password</label>
 						<input type="password" v-model="password" @input="process" class="form-control form-control-lg" />
 					</div>
-					<button v-if="noErrors" type="submit" class="btn btn-primary">Submit</button>
+					<button v-cloak v-if="noErrors" @click="formSubmit" type="submit" class="btn btn-primary">Submit</button>
 				</form>
-				<div class="errors">
-					<p v-if="!emailSuccess">Not a Valid Email</p>
-					<div class="password-errors" v-if="!passwordObj.passwordSuccess">
-						<p v-if="!passwordObj.pwLengthSuccess">At least 8 characters</p>
-						<p v-if="!passwordObj.pwUCSuccess">At least one uppercase character</p>
-						<p v-if="!passwordObj.pwLCSuccess">At least one lowercase character</p>
-						<p v-if="!passwordObj.pwSCSuccess">At least one special character</p>
-						<p v-if="!passwordObj.pwDigSuccess">At least one digit</p>
-					</div>
+				<div class="errors" v-if="!noErrors">
+					<section v-cloak v-if="email" class="email-errors">
+						<span class="warning" :class="{valid: emailSuccess}">{{emailText}}</span>	
+					</section>
+					<section class="password-errors" v-if="password" v-cloak>
+						<span class="warning" :class="{valid: passwordObj.pwLengthSuccess}">At least 8 characters</span>
+						<span class="warning" :class="{valid: passwordObj.pwUCSuccess}">At least one uppercase character</span>
+						<span class="warning" :class="{valid: passwordObj.pwLCSuccess}">At least one lowercase character</span>
+						<span class="warning" :class="{valid: passwordObj.pwSCSuccess}">At least one special character</span>
+						<span class="warning" :class="{valid: passwordObj.pwDigSuccess}">At least one digit</span>
+					</section>
 				</div>
 			</div>
 		</div>
 	</body>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script type="text/javascript">
-
-		function emailValidator(emailAddress){
-			// Email Validation
-			var emailSuccess = false, emailFilter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-			if (emailAddress) {
-				emailSuccess = false;
-				if(emailFilter.test(emailAddress))
-					emailSuccess = true;
-			}else{
-				emailSuccess = true;
-			}
-
-			return emailSuccess;
-
-		}
-
-
-		function passwordValidator(password){
-
-			var passwordObj = {
-				passwordSuccess: true,
-				pwLengthSuccess: false,
-				pwLCSuccess: false,
-				pwUCSuccess: false,
-				pwSCSuccess: false,
-				pwDigSuccess: false
-			};
-
-			// Password Validation
-			var lowerCaseFilter = /(?=.*[a-z])/;
-			var upperCaseFilter = /(?=.*[A-Z])/;
-			var specialCharFilter = /[!@#$%^&*()-+={}\|/?<>,.~`_]/;
-			var digitFilter = /(?=.*\d)/;
-
-			if(password){
-				passwordObj.passwordSuccess = false;
-				if(password.length > 7)
-					passwordObj.pwLengthSuccess = true;
-
-				if(upperCaseFilter.test(password))
-					passwordObj.pwUCSuccess = true;
-
-				if(lowerCaseFilter.test(password))
-					passwordObj.pwLCSuccess = true;
-
-				if(specialCharFilter.test(password))
-					passwordObj.pwSCSuccess = true;
-
-				if(digitFilter.test(password))
-					passwordObj.pwDigSuccess = true;
-
-				if(passwordObj.pwLengthSuccess && passwordObj.pwUCSuccess && passwordObj.pwLCSuccess && passwordObj.pwSCSuccess && passwordObj.pwDigSuccess) 
-					passwordObj.passwordSuccess = true;
-			}
-			return passwordObj;
-		}
-
-		var vm = new Vue({
-			el: '#app',
-			data: {
-				email: '',
-				password: '',
-				emailSuccess: true,
-				noErrors: false,
-				passwordObj: {
-					passwordSuccess: true,
-					pwLengthSuccess: false, // Setting Password Length Success Criteria to False
-					pwLCSuccess: false,  // Setting Password Lower Case Success Criteria to False
-					pwUCSuccess: false,  // Setting Password Upper Case Success Criteria to False
-					pwSCSuccess: false,  // Setting Password Special Character Success Criteria to False
-					pwDigSuccess: false  // Setting Password Digits Success Criteria to False
-				}
-			},
-			methods: {
-				process: function(){
-					
-					this.emailSuccess = emailValidator(this.email);
-
-					this.passwordObj = passwordValidator(this.password);
-
-					if(this.email && this.password && this.emailSuccess && this.passwordObj.passwordSuccess){
-						this.noErrors = true;
-					}else{
-						this.noErrors = false;
-					}
-
-				}
-			}
-		})
-	</script>
+	<script src="js/vue.js"></script>
+	<script src="js/scripts.js"></script>
 </html>

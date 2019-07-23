@@ -1,0 +1,12 @@
+* {box-sizing: border-box;}
+body{color: #FFF; font-family: Arial,sans-serif; padding: 0; margin: 0; font-size: 14px; color: #646464;}
+.container{margin: 0 auto; width: 600px; padding: 20px; border: 1px solid #000; margin-top: 10px;}
+.form-group{margin-bottom: 20px;}
+label{display: block; font-weight: bold; display: block; margin-bottom: 10px;}
+input[type="email"], input[type="password"]{padding: 10px; display: block; width: 100%; font-size: 14px; color: #646464;}
+button{display: block; width: 100%; border: 0 none; background-color: #000; color: #FFF; padding: 10px; font-size: 16px; cursor: pointer; margin-bottom: 10px;}
+span.warning{display: block; margin-bottom: 5px; font-weight: bold;}
+span.warning.valid{color: #007D25;}
+.email-errors{border: 1px solid #AAA; padding: 10px 10px 5px; border-radius: 10px; color: #920000; background-color: #EEE; margin-bottom: 10px;}
+.password-errors{border: 1px solid #AAA; padding: 10px 10px 5px; border-radius: 10px; color: #920000; background-color: #EEE;}
+[v-cloak]{display: none;}
