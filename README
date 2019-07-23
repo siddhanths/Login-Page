@@ -5,9 +5,9 @@ Registration Page created with Email and Password Inputs
 - Email Validation text will be green when email address entered is valid and Red when email address is invalid
 - Password needs to follow the below criteria to be valid
     - At least 8 characters (Text turns Green when at least 8 characters are entered, Red when less than 8 characters are entered)
-    - At least one uppercase letter (Text turns Green when at least one uppercase letter is entered, Red when less there are no uppercase letters)
-    - At least one lower case letter (Text turns Green when at least one lowercase letter is entered, Red when less there are no lowercase letters)
-    - At least one digit [0-9] (Text turns Green when at least one number is entered, Red when less there are no numbers)
-    - At least special character (Text turns Green when at least one special character is entered, Red when less there are no special characters)
+    - At least one uppercase letter (Text turns Green when at least one uppercase letter is entered, Red when there are no uppercase letters)
+    - At least one lower case letter (Text turns Green when at least one lowercase letter is entered, Red when there are no lowercase letters)
+    - At least one digit [0-9] (Text turns Green when at least one number is entered, Red when there are no numbers)
+    - At least special character (Text turns Green when at least one special character is entered, Red when there are no special characters)
 - Email validation and Password Validation content disappears when both email and password is validated after measuring the success criteria and Submit Button is displayed
 - Validation is considered to be successful when neither of the input fields are empty and pass all the success criteria as defined above
