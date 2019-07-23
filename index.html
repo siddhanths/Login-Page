@@ -12,11 +12,11 @@
 				<form class="form">
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" v-model="email" @input="process" class="form-control form-control-lg" />
+						<input type="email" name="email" v-model="email" @input="process" />
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
-						<input type="password" v-model="password" @input="process" class="form-control form-control-lg" />
+						<input type="password" name="password" v-model="password" @input="process" />
 					</div>
 					<button v-cloak v-if="noErrors" @click="formSubmit" type="submit" class="btn btn-primary">Submit</button>
 				</form>
@@ -24,7 +24,7 @@
 					<section v-cloak v-if="email" class="email-errors">
 						<span class="warning" :class="{valid: emailObj.emailSuccess}">{{emailObj.emailText}}</span>	
 					</section>
-					<section class="password-errors" v-if="password" v-cloak>
+					<section v-cloak class="password-errors" v-if="password">
 						<span class="warning" :class="{valid: passwordObj.pwLengthSuccess}">At least 8 characters</span>
 						<span class="warning" :class="{valid: passwordObj.pwUCSuccess}">At least one uppercase character</span>
 						<span class="warning" :class="{valid: passwordObj.pwLCSuccess}">At least one lowercase character</span>
